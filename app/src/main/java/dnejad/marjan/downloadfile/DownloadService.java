@@ -90,6 +90,46 @@ public class DownloadService extends IntentService {
     private void downloadFile(Response response) throws IOException {
         ResponseBody body = (ResponseBody) response.body();
 
+        
+         /*
+        * for support all type of file 
+        * 
+        */
+        
+//         type from response header
+//        String sContentType = response.headers().get("Content-Type");
+//
+//        //seprate file type and extend
+//        String[] contentType=sContentType.split("/");
+//
+//        String cType=contentType[0];
+//        String cExtend=contentType[1];
+//
+//        //because extend of some type like application is not valid , we define it manually
+//        String extend;
+//        switch (cType){
+//            case "image":
+//                extend=cExtend;
+//                break;
+//            case "application":
+//                extend="apk";
+//                break;
+//            case "audio":
+//                extend="mp3";
+//                break;
+//                default:
+//                    extend="zip";
+//                    break;
+//        }
+//
+        
+//  should use it 
+//        File outputFile = new File(Environment.getExternalStoragePublicDirectory(
+//                Environment.
+        
+        
+        
+        
         if (body != null) {
 
             /*
