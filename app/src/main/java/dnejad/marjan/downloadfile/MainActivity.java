@@ -69,6 +69,24 @@ public class MainActivity extends AppCompatActivity {
             requestPermission();
         }
     }
+    
+        /*
+    * for install package in background 
+    * but the device should be root
+    */
+    public static void InstallAPK(String filename){
+        File file = new File(filename);
+        if(file.exists()){
+            try {
+                String command;
+                command = "adb install -r " + filename;  //adb can be pm
+                Process proc = Runtime.getRuntime().exec(new String[] { "su", "-c", command });
+                proc.waitFor();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
     /*
@@ -108,6 +126,14 @@ public class MainActivity extends AppCompatActivity {
                 if (download.getProgress() == 100) {
 
                     mProgressText.setText("File Download Complete");
+                    
+                     /*
+                    * for show install window automatic after complete download
+                    */
+                    Intent promptInstall = new Intent(Intent.ACTION_VIEW);
+                    promptInstall.setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/download/" + "marjanapp.apk"))
+                            ,"application/vnd.android.package-archive");
+                    startActivity(promptInstall);
 
                 } else {
 
